@@ -382,7 +382,7 @@ async function main() {
     await saveToDB(UT_TOP_400_RESULTS);
     const UT_TOP_400_FINAL = SortAndSlice(UT_TOP_400_RESULTS, 400); // SortAndSlice(데이터 , 자르기숫자)
     for (let item of UT_TOP_400_FINAL) {
-      const playerDocs = await Price.find({ id: item.id });
+      const playerDocs = await Price.find({ id: item.id }).lean();
       if (playerDocs.length > 0) {
         const playerData = {
           grade: item.prices.grade,
