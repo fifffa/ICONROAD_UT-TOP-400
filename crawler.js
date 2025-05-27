@@ -386,7 +386,9 @@ async function main() {
 
     // -------------------------------------------------------------------------------------------------------------------------------
 
-    const doc = await EventValueChart.findOne({ id: "아이콘 로드 3500" });
+    const doc = await EventValueChart.findOne({
+      id: "아이콘 로드 3500",
+    }).lean();
 
     let mergedSeasonPacks = [];
     const now = new Date();
