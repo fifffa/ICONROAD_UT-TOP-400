@@ -292,20 +292,8 @@ async function main() {
       packName: "ICON TM 클래스 Top Price ALL 동일확률 프리미엄 팩 (5강)",
       playerPrice: [],
     };
-    const KB24_TOP_ALL = {
-      packName: "24KB 클래스 Top Price ALL 동일확률 스페셜팩 (8강)",
-      playerPrice: [],
-    };
-    const ICONS_MATCHANDICON = {
-      packName: "ICONS MATCH 포함 Top Price 550 스페셜팩 (5~8강, 110+)",
-      playerPrice: [],
-    };
-    const UT_TOP_400 = {
-      packName: "UT 포함 Top Price 400 스페셜팩 (8강, 104+)",
-      playerPrice: [],
-    };
-    const MDL_TOP_400 = {
-      packName: "MDL 포함 Top Price 400 스페셜팩 (8강, 105+)",
+    const MDL_TOP_300 = {
+      packName: "MDL 포함 Top Price 300 스페셜팩 (8강, 106+)",
       playerPrice: [],
     };
 
@@ -332,28 +320,28 @@ async function main() {
 
     // // -------------------------------------- MDL, UT, 24KB, JNM, 24HEROES, DC, JVA, CC, FCA, 23HW, HG, RTN, 23HEROES, RMCF, LN, SPL, 23NG, LOL, FA, 23KFA, 22HEROES, BTB, CAP TOP 400--------------------------------------
 
-    const MDL_TOP_400_LIST = await playerSearch(
+    const MDL_TOP_300_LIST = await playerSearch(
       [
-        821, 814, 830, 813, 811, 802, 801, 289, 290, 291, 283, 284, 281, 274,
-        268, 270, 804, 265, 264, 806, 261, 256, 252,
+        821, 814, 813, 811, 802, 801, 289, 290, 291, 283, 284, 281, 274, 268,
+        270, 804, 265, 264, 806,
       ],
-      105
+      106
     ); // playerSearch(시즌넘버, 최소오버롤)
-    let MDL_TOP_400_RESULTS = await playerPriceValue(MDL_TOP_400_LIST, 8); // playerPriceValue(데이터 , 강화등급)
-    await saveToDB(MDL_TOP_400_RESULTS);
-    const MDL_TOP_400_FINAL = SortAndSlice(MDL_TOP_400_RESULTS, 400); // SortAndSlice(데이터 , 자르기숫자)
+    let MDL_TOP_300_RESULTS = await playerPriceValue(MDL_TOP_300_LIST, 8); // playerPriceValue(데이터 , 강화등급)
+    await saveToDB(MDL_TOP_300_RESULTS);
+    const MDL_TOP_300_FINAL = SortAndSlice(MDL_TOP_300_RESULTS, 400); // SortAndSlice(데이터 , 자르기숫자)
 
-    for (let item of MDL_TOP_400_FINAL) {
+    for (let item of MDL_TOP_300_FINAL) {
       const playerDocs = await Price.find({ id: item.id });
       if (playerDocs.length > 0 && playerDocs[0]._id) {
         const playerData = {
           grade: item.prices.grade,
           playerPrice: playerDocs[0]?._id || null,
         };
-        MDL_TOP_400.playerPrice.push(playerData);
+        MDL_TOP_300.playerPrice.push(playerData);
       }
     }
-    data.seasonPack.push({ ...MDL_TOP_400 });
+    data.seasonPack.push({ ...MDL_TOP_300 });
 
     // -------------------------------------------------------------------------------------------------------------------------------
 
