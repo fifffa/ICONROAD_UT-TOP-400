@@ -318,7 +318,7 @@ async function main() {
     }
     data.seasonPack.push({ ...ICON_TM_TOP_ALL });
 
-    // // -------------------------------------- MDL, UT, 24KB, JNM, 24HEROES, DC, JVA, CC, FCA, 23HW, HG, RTN, 23HEROES, RMCF, LN, SPL, 23NG, LOL, FA, 23KFA, 22HEROES, BTB, CAP TOP 400--------------------------------------
+    // // -------------------------------------- MDL, UT, JNM, 24HEROES, DC, JVA, CC, FCA, 23HW, HG, RTN, 23HEROES, RMCF, LN, SPL, 23NG, LOL, FA, 23KFA, TOP 300--------------------------------------
 
     const MDL_TOP_300_LIST = await playerSearch(
       [
@@ -329,7 +329,7 @@ async function main() {
     ); // playerSearch(시즌넘버, 최소오버롤)
     let MDL_TOP_300_RESULTS = await playerPriceValue(MDL_TOP_300_LIST, 8); // playerPriceValue(데이터 , 강화등급)
     await saveToDB(MDL_TOP_300_RESULTS);
-    const MDL_TOP_300_FINAL = SortAndSlice(MDL_TOP_300_RESULTS, 400); // SortAndSlice(데이터 , 자르기숫자)
+    const MDL_TOP_300_FINAL = SortAndSlice(MDL_TOP_300_RESULTS, 300); // SortAndSlice(데이터 , 자르기숫자)
 
     for (let item of MDL_TOP_300_FINAL) {
       const playerDocs = await Price.find({ id: item.id });
